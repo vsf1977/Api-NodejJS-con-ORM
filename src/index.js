@@ -16,6 +16,6 @@ app.listen(app.get('port'),()=>{
     console.log(`Server listening on port ${app.get('port')}`);
 });
 
-
 //Routes
-app.use('/client',require('./routes/client'));
+app.use('/client',require('./domain/clientDomain'));
+app.use('/bill',require('./domain/billDomain'));

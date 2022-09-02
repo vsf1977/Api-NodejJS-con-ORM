@@ -9,7 +9,7 @@ var config = {
     trustServerCertificate: true
 };
 
-const sequelize = new Sequelize('Facturacion', 'Usuario', '123456', {
+const sequelize = new Sequelize('Facturacion', 'Usuario', '987654321', {
     host: 'localhost',
     dialect: 'mssql',   
     port:59245,

@@ -1,27 +1,24 @@
 var express = require('express');
 var Router = express.Router();
 const { Op } = require("sequelize");
-var Cliente = require('../entities/cliente');
+var ORMClient = require('../ORMentities/ORMclient');
 
 Router.get('/getAll', function (req, res) {   
   
-    Cliente.findAll().then(function(clients) {
+    ORMClient.findAll().then(function(clients) {
         if (clients != null)
             res.send(clients)
         else
             res.send("No clients")
     }).catch( error => {
         res.send(error); 
-    })       
-    
+    })   
 });
 
-
 Router.get('/getById/:id', function (req, res) {      
-
-    Cliente.findByPk(req.params.id).then(function(user) {
-        if (user != null)
-            res.send(user)
+    ORMClient.findByPk(req.params.id).then(function(cli) {
+        if (cli != null)
+            res.send(cli)
         else
             res.send("No client with this id")
     }).catch( error => {
@@ -30,8 +27,7 @@ Router.get('/getById/:id', function (req, res) {
 });
 
 Router.get('/getByName/:name', function (req, res) {      
-
-    Cliente.findAll({ where: { Nombre: {[Op.like]: '%' + req.params.name + '%' } } }).then(function(user) {
+    ORMClient.findAll({ where: { Nombre: {[Op.like]: '%' + req.params.name + '%' } } }).then(function(user) {
         if (user != null)
             res.send(user)
         else
@@ -42,9 +38,8 @@ Router.get('/getByName/:name', function (req, res) {
 });
 
 
-Router.post('', function (req, res) {    
-    
-    Cliente.create({ IDCliente: req.body.IDCliente,
+Router.post('', function (req, res) {  
+    ORMClient.create({ IDCliente: req.body.IDCliente,
                      Nombre: req.body.Nombre,
                      Apellidos: req.body.Apellidos,
                      FechaNacimiento: req.body.FechaNacimiento  
@@ -57,8 +52,7 @@ Router.post('', function (req, res) {
 
 
 Router.put('', function (req, res) {    
-
-    Cliente.update({ Nombre: req.body.Nombre,
+    ORMClient.update({ Nombre: req.body.Nombre,
                      Apellidos: req.body.Apellidos,
                      FechaNacimiento: req.body.FechaNacimiento  
     }, { where: {
@@ -73,8 +67,7 @@ Router.put('', function (req, res) {
 });
 
 Router.delete('', function (req, res) {    
-
-    Cliente.destroy({ where: {
+    ORMClient.destroy({ where: {
         IDCliente: req.body.IDCliente
       }
     }).then(function(res) {       
