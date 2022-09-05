@@ -1,0 +1,31 @@
+var express = require('express');
+var Router = express.Router();
+var ClientDomain = require('../domain/ClientDomain');
+
+var ClientDom = new ClientDomain()
+
+Router.get('/getAll', async function (req, res) {   
+    res.send(await ClientDom.findAll());
+});
+
+Router.get('/getById/:id', async function (req, res) {   
+    res.send(await ClientDom.findById(req.params.id));
+});
+
+Router.get('/getByName/:name', async function (req, res) {   
+    res.send(await ClientDom.findByName(req.params.name));
+});
+
+Router.post('', async function (req, res) {   
+    res.send(await ClientDom.insert(req));
+});
+
+Router.put('', async function (req, res) {   
+    res.send(await ClientDom.update(req));
+});
+
+Router.delete('', async function (req, res) {   
+    res.sendStatus(await ClientDom.delete(req.body.IDCliente));
+});
+
+module.exports = Router

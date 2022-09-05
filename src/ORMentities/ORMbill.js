@@ -1,7 +1,7 @@
-var sequelize = require('../server/connectionString');
+var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
 
-const ORMBill = sequelize.define('Factura', {
+const ormBill = sequelize.define('Factura', {
   // Model attributes are defined here
   IDFactura: {
     type: DataTypes.BIGINT,
@@ -20,4 +20,4 @@ const ORMBill = sequelize.define('Factura', {
   timestamps: false
 });
 
-module.exports = ORMBill;  
+module.exports = ormBill;  

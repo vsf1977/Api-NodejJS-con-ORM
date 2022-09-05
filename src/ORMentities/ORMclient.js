@@ -1,7 +1,7 @@
-var sequelize = require('../server/connectionString');
+var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
 
-const ORMClient = sequelize.define('Cliente', {
+const ormClient = sequelize.define('Cliente', {
   // Model attributes are defined here
   IDCliente: {
     type: DataTypes.BIGINT,
@@ -23,4 +23,4 @@ const ORMClient = sequelize.define('Cliente', {
 });
 
 
-module.exports = ORMClient;  
+module.exports = ormClient;  

@@ -1,62 +1,64 @@
-var express = require('express');
-var Router = express.Router();
-const { Op } = require("sequelize");
-var ORMBill = require('../ORMentities/ORMbill');
+var ormBill = require('../ormentities/Ormbill');
 
-Router.get('/getAll', function (req, res) {   
-    ORMBill.findAll().then(function(bills) {
-        if (bills != null)
-            res.send(bills)
-        else
-            res.send("No bills")
-    }).catch( error => {
-        res.send(error); 
-    })           
-});
+class BillDomain {
 
-Router.get('/getById/:id', function (req, res) {      
-    ORMBill.findByPk(req.params.id).then(function(bill) {
-        if (bill != null)
-            res.send(bill)
-        else
-            res.send("No bill with this id")
-    }).catch( error => {
-        res.send(error); 
-    }) 
-});
+    constructor(){     
+    }
 
-Router.post('', function (req, res) {    
-    ORMBill.create({ IDCliente: req.body.IDCliente,
-                     Fecha: req.body.Fecha
-    }).then(function(res) {       
-        res.send(res)       
-    }).catch( error => {
-        res.send(error); 
-    }) 
-});
+    async findAll() {
+        return ormBill.findAll().then(function(bills) {
+            if (bills != null)
+                return bills
+            else
+                return "No bills"
+            }).catch( error => {
+                return error
+            })
+    }
 
-Router.put('', function (req, res) {    
-    ORMBill.update({ Fecha: req.body.Fecha
-    }, { where: {
-        IDFactura: req.body.IDFactura
-      }
-    }).then(function(res) {       
-        res.send(res)       
-    }).catch( error => {
-        res.send(error); 
-    }) 
-});
+    async findById(id) {
+        return ormBill.findByPk(id).then(function(bill) {
+            if (bill != null)
+                return bill
+            else
+                return "No bill with this id"
+            }).catch( error => {
+                return error
+            })
+    }
 
-Router.delete('', function (req, res) {    
-    debugger
-    ORMBill.destroy({ where: {
-        IDFactura: req.body.IDFactura
-      }
-    }).then(function(res) {       
-        res.send(res)       
-    }).catch( error => {
-        res.send(error); 
-    }) 
-});
+    async insert(req) {
+        return ormBill.create({IDFactura: req.body.IDFactura,
+                        IDCliente: req.body.IDCliente,
+                        Fecha: req.body.Fecha
+            }).then(function(res) {       
+                return res
+            }).catch( error => {
+                return error
+            })
+    }
 
-module.exports = Router;
+    async update(req) {
+        return ormBill.update({Fecha: req.body.Fecha}, 
+            { where: { IDFactura: req.body.IDFactura }
+            }).then(function(res) {       
+                return res
+            }).catch( error => {
+                return error
+            })
+    }
+
+    async delete(IDFactura) {
+        return ormBill.destroy({ where: {IDFactura: IDFactura}
+            }).then(function(res) {  
+                console.log(res)
+                if (res == 1)
+                    return 200
+                else
+                    return 204
+            }).catch( error => {
+                return error.statusCode
+            })
+    }
+}
+module.exports = BillDomain;

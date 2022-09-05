@@ -17,5 +17,5 @@ app.listen(app.get('port'),()=>{
 });
 
 //Routes
-app.use('/client',require('./domain/clientDomain'));
-app.use('/bill',require('./domain/billDomain'));
+app.use('/client',require('./controller/ClientController'));
+app.use('/bill',require('./controller/BillController'));
