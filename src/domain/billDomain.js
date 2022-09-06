@@ -1,4 +1,5 @@
 var billService = require('../services/BillService');
+var Product = require('../services/ProductService')
 
 class BillDomain {
 
@@ -6,7 +7,7 @@ class BillDomain {
     }
 
     async findAll() {
-        return billService.findAll().then(function(bills) {
+        return billService.findAll({include: Product}).then(function(bills) {
             if (bills != null)
                 return bills
             else

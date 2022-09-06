@@ -1,5 +1,7 @@
 var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
+var productService = require('../services/productService');
+var billDetailService = require('../services/BillDetailService')
 
 const billService = sequelize.define('Factura', {
   // Model attributes are defined here
@@ -9,9 +11,6 @@ const billService = sequelize.define('Factura', {
     unique : true,
     autoIncrement : true
   },
-  // IDCliente: {
-  //   type: DataTypes.INTEGER,
-  // },
   Fecha: {
     type: DataTypes.DATEONLY,
   }
@@ -19,5 +18,7 @@ const billService = sequelize.define('Factura', {
   {
   timestamps: false
 });
+billService.belongsToMany(productService, { through: billDetailService , foreignKey: "IDFactura"});
+productService.belongsToMany(billService, { through: billDetailService , foreignKey: "IDProducto"});
 
 module.exports = billService;  
