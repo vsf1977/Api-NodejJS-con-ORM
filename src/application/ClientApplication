@@ -1,0 +1,75 @@
+var ClientDomain = require('../domain/ClientDomain');
+
+var ClientDom = new ClientDomain()
+
+class ClientApplication {
+
+    constructor(){     
+    }
+
+    async findAll() {
+        try {
+            return await ClientDom.findAll()
+        } catch (error) {
+            return error
+        }
+    }
+
+    async findAllWithInfo() {
+        try {
+            return await ClientDom.findAllWithInfo()
+        } catch (error) {
+            return error
+        }
+    }
+
+    async findById(id) {
+        try {
+            return await ClientDom.findById(id)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async findByIdWithInfo(id) {
+        try {
+            return await ClientDom.findByIdWithInfo(id)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async findByName(id) {
+        try {
+            return await ClientDom.findByName(id)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async insert(data) {
+        try {
+            return await ClientDom.insert(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async update(data) {
+        try {
+            return await ClientDom.update(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async delete(id) {
+        try {
+            return await ClientDom.delete(id)
+        } catch (error) {
+            return error
+        }
+    }
+}
+
+module.exports = ClientApplication

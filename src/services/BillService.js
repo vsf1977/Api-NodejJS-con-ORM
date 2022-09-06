@@ -1,20 +1,18 @@
 var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
 
-const ormClient = sequelize.define('Cliente', {
+const billService = sequelize.define('Factura', {
   // Model attributes are defined here
-  IDCliente: {
+  IDFactura: {
     type: DataTypes.BIGINT,
     primaryKey: true,
-    unique : true
+    unique : true,
+    autoIncrement : true
   },
-  Nombre: {
-    type: DataTypes.STRING,
-  },
-  Apellidos: {
-    type: DataTypes.STRING,
-  },
-  FechaNacimiento: {
+  // IDCliente: {
+  //   type: DataTypes.INTEGER,
+  // },
+  Fecha: {
     type: DataTypes.DATEONLY,
   }
 },
@@ -22,5 +20,4 @@ const ormClient = sequelize.define('Cliente', {
   timestamps: false
 });
 
-
-module.exports = ormClient;  
+module.exports = billService;  

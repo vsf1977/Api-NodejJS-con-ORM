@@ -1,27 +1,27 @@
 var express = require('express');
 var Router = express.Router();
-var BillDomain = require('../domain/BillDomain');
+var BillApplication = require('../application/BillApplication');
 
-var BillDom = new BillDomain()
+var BillApp = new BillApplication()
 
 Router.get('/getAll', async function (req, res) {   
-    res.send(await BillDom.findAll());
+    res.send(await BillApp.findAll());
 });
 
 Router.get('/getById/:id', async function (req, res) {   
-    res.send(await BillDom.findById(req.params.id));
+    res.send(await BillApp.findById(req.params.id));
 });
 
 Router.post('', async function (req, res) {   
-    res.send(await BillDom.insert(req));
+    res.send(await BillApp.insert(req));
 });
 
 Router.put('', async function (req, res) {   
-    res.send(await BillDom.update(req));
+    res.send(await BillApp.update(req));
 });
 
 Router.delete('', async function (req, res) {   
-    res.sendStatus(await BillDom.delete(req.body.IDFactura));
+    res.send(await BillApp.delete(req.body.IDFactura));
 });
 
 module.exports = Router

@@ -1,0 +1,51 @@
+var BillDomain = require('../domain/BillDomain');
+
+var BillDom = new BillDomain()
+
+class BillApplication {
+
+    constructor(){     
+    }
+
+    async findAll() {
+        try {
+            return await BillDom.findAll()
+        } catch (error) {
+            return error
+        }
+    }
+
+    async findById(id) {
+        try {
+            return await BillDom.findById(id)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async insert(data) {
+        try {
+            return await BillDom.insert(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async update(data) {
+        try {
+            return await BillDom.update(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async delete(id) {
+        try {
+            return await BillDom.delete(id)
+        } catch (error) {
+            return error
+        }
+    }
+}
+
+module.exports = BillApplication

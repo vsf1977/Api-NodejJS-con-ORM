@@ -1,31 +1,39 @@
 var express = require('express');
 var Router = express.Router();
-var ClientDomain = require('../domain/ClientDomain');
+var ClientApplication = require('../application/ClientApplication');
 
-var ClientDom = new ClientDomain()
+var ClientApp = new ClientApplication()
 
 Router.get('/getAll', async function (req, res) {   
-    res.send(await ClientDom.findAll());
+    res.send(await ClientApp.findAll());
+});
+
+Router.get('/getAllWithInfo', async function (req, res) {   
+    res.send(await ClientApp.findAllWithInfo());
 });
 
 Router.get('/getById/:id', async function (req, res) {   
-    res.send(await ClientDom.findById(req.params.id));
+    res.send(await ClientApp.findById(req.params.id));
+});
+
+Router.get('/getByIdWithInfo/:id', async function (req, res) {   
+    res.send(await ClientApp.findByIdWithInfo(req.params.id));
 });
 
 Router.get('/getByName/:name', async function (req, res) {   
-    res.send(await ClientDom.findByName(req.params.name));
+    res.send(await ClientApp.findByName(req.params.name));
 });
 
 Router.post('', async function (req, res) {   
-    res.send(await ClientDom.insert(req));
+    res.send(await ClientApp.insert(req));
 });
 
 Router.put('', async function (req, res) {   
-    res.send(await ClientDom.update(req));
+    res.send(await ClientApp.update(req));
 });
 
 Router.delete('', async function (req, res) {   
-    res.sendStatus(await ClientDom.delete(req.body.IDCliente));
+    res.send(await ClientApp.delete(req.body.IDCliente));
 });
 
 module.exports = Router

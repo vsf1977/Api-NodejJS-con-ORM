@@ -1,5 +1,5 @@
 const { Op } = require("sequelize");
-var ormClient = require('../ormentities/Ormclient');
+var clientService = require('../services/ClientService');
 
 class ClientDomain {
 
@@ -7,7 +7,18 @@ class ClientDomain {
     }
 
     async findAll() {
-        return ormClient.findAll().then(function(clients) {
+        return clientService.findAll().then(function(clients) {
+            if (clients != null)
+                return clients
+            else
+                return "No clients"
+            }).catch( error => {
+                return error
+            })
+    }
+
+    async findAllWithInfo() {
+        return clientService.findAll({ include: ["Factura"] }).then(function(clients) {
             if (clients != null)
                 return clients
             else
@@ -18,7 +29,18 @@ class ClientDomain {
     }
 
     async findById(id) {
-        return ormClient.findByPk(id).then(function(cli) {
+        return clientService.findByPk(id).then(function(cli) {
+            if (cli != null)
+                return cli
+            else
+                return "No client with this id"
+            }).catch( error => {
+                return error
+            })
+    }
+
+    async findByIdWithInfo(id) {
+        return clientService.findByPk(id,{ include: ["Factura"] }).then(function(cli) {
             if (cli != null)
                 return cli
             else
@@ -29,7 +51,7 @@ class ClientDomain {
     }
     
     async findByName(name) {
-        return ormClient.findAll({ where: { Nombre: {[Op.like]: '%' + name + '%' } } }).then(function(cli) {
+        return clientService.findAll({ where: { Nombre: {[Op.like]: '%' + name + '%' } } }).then(function(cli) {
             if (cli != null)
                 return cli
             else
@@ -40,7 +62,7 @@ class ClientDomain {
     }
 
     async insert(req) {
-        return ormClient.create({ IDCliente: req.body.IDCliente,
+        return clientService.create({ IDCliente: req.body.IDCliente,
                                   Nombre: req.body.Nombre,
                                   Apellidos: req.body.Apellidos,
                                   FechaNacimiento: req.body.FechaNacimiento
@@ -52,7 +74,7 @@ class ClientDomain {
     }
 
     async update(req) {
-        return ormClient.update({ Nombre: req.body.Nombre,
+        return clientService.update({ Nombre: req.body.Nombre,
                                   Apellidos: req.body.Apellidos,
                                   FechaNacimiento: req.body.FechaNacimiento },
                                   { where: 
@@ -65,15 +87,15 @@ class ClientDomain {
     }
 
     async delete(IDCliente) {
-        return ormClient.destroy({ where: {IDCliente: IDCliente}
+        return clientService.destroy({ where: {IDCliente: IDCliente}
             }).then(function(res) {  
                 console.log(res)
                 if (res == 1)
                     return 200
                 else
                     return 204
-            }).catch( error => {
-                return error.statusCode
+            }).catch(error => {
+                return error.index
             })
     }
 }
