@@ -3,7 +3,7 @@ const { Sequelize } = require('sequelize');
 var config = {
     user: 'Usuario',
     password: '123456',
-    server: 'VLADIMIRPC\\SQLEXPRESS', 
+    server: 'VLADIMIR-PC\\SQLEXPRESS', 
     database: 'Facturacion',
     port:1433,
     trustServerCertificate: true
@@ -12,7 +12,7 @@ var config = {
 const sequelize = new Sequelize('Facturacion', 'Usuario', '987654321', {
     host: 'localhost',
     dialect: 'mssql',   
-    port:59245,
+    port:54627,
     define: {
         freezeTableName: true
     }
