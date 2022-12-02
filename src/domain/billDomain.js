@@ -11,7 +11,7 @@ class BillDomain {
             if (bills != null)
                 return bills
             else
-                return "No bills"
+                return []
         }).catch( error => {
             return error
         })
@@ -22,7 +22,7 @@ class BillDomain {
             if (bill != null)
                 return bill
             else
-                return "No bill with this id"
+                return []
         }).catch( error => {
             return error
         })

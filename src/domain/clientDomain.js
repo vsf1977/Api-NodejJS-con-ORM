@@ -11,7 +11,7 @@ class ClientDomain {
             if (clients != null)
                 return clients
             else
-                return "No clients"
+                return []
             }).catch( error => {
                 return error
             })
@@ -22,7 +22,7 @@ class ClientDomain {
             if (clients != null)
                 return clients
             else
-                return "No clients"
+                return []
             }).catch( error => {
                 return error
             })
@@ -33,7 +33,7 @@ class ClientDomain {
             if (cli != null)
                 return cli
             else
-                return "No client with this id"
+                return []
             }).catch( error => {
                 return error
             })
@@ -44,7 +44,7 @@ class ClientDomain {
             if (cli != null)
                 return cli
             else
-                return "No client with this id"
+                return []
             }).catch( error => {
                 return error
             })
@@ -55,7 +55,7 @@ class ClientDomain {
             if (cli != null)
                 return cli
             else
-                return "No client with this name"
+                return []
             }).catch( error => {
                 return error
             })
