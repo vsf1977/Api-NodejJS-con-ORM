@@ -6,14 +6,10 @@ var billDetailService = require('../services/BillDetailService')
 const productService = sequelize.define('Producto', {
   // Model attributes are defined here
   IDProducto: {
-    type: DataTypes.BIGINT,
-    primaryKey: true,
-    unique : true,
-    autoIncrement : true
+    type: 'UNIQUEIDENTIFIER',
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
   },
-  Cantidad:{
-    type : DataTypes.INTEGER
-  },  
   Precio: {
     type: DataTypes.DECIMAL(10,2)
   },

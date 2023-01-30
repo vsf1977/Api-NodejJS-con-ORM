@@ -12,7 +12,7 @@ var config = {
 const sequelize = new Sequelize('Facturacion', 'Usuario', '987654321', {
     host: 'localhost',
     dialect: 'mssql',   
-    port:54627,
+    port:49789,
     define: {
         freezeTableName: true
     }

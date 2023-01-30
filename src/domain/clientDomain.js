@@ -1,5 +1,6 @@
 const { Op } = require("sequelize");
 var clientService = require('../services/ClientService');
+var billService = require('../services/BillService');
 
 class ClientDomain {
 
@@ -7,17 +8,6 @@ class ClientDomain {
     }
 
     async findAll() {
-        return clientService.findAll().then(function(clients) {
-            if (clients != null)
-                return clients
-            else
-                return []
-            }).catch( error => {
-                return error
-            })
-    }
-
-    async findAllWithInfo() {
         return clientService.findAll({ include: ["Factura"] }).then(function(clients) {
             if (clients != null)
                 return clients

@@ -5,9 +5,9 @@ const { DataTypes } = require('sequelize');
 const clientService = sequelize.define('Cliente', {
   // Model attributes are defined here
   IDCliente: {
-    type: DataTypes.BIGINT,
-    primaryKey: true,
-    unique : true
+    type: 'UNIQUEIDENTIFIER',
+    defaultValue: DataTypes.UUIDV4,
+    primaryKey: true
   },
   Nombre: {
     type: DataTypes.STRING,
