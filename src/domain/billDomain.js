@@ -1,5 +1,6 @@
 var billService = require('../services/BillService');
-var Product = require('../services/ProductService')
+var Product = require('../services/ProductService');
+var sequelize = require('../server/ConnectionString');
 
 class BillDomain {
 
@@ -7,14 +8,20 @@ class BillDomain {
     }
 
     async findAll() {
-        return billService.findAll({include: Product}).then(function(bills) {
-            if (bills != null)
-                return bills
-            else
-                return []
-        }).catch( error => {
-            return error
-        })
+        // return billService.findAll({include: Product}).then(function(bills) {
+        //     if (bills != null)
+        //         return bills
+        //     else
+        //         return []
+        // }).catch( error => {
+        //     return error
+        // })
+        const res = await sequelize.query('select IDFactura, Fecha, Nombre, Apellidos, sum(total) as Total, sum(cantidad) as Cantidad from '+
+                                     '(select f.IDFactura, f.fecha, c.Nombre, c.Apellidos, sum(d.cantidad* p.precio) as total, d.cantidad from factura f join Cliente c on f.IDCliente=c.IDCliente join DetalleFactura d on f.IDFactura=d.IDFactura join Producto p on p.IDProducto=d.IDProducto '+
+                                     'group by f.IDFactura, f.fecha, c.Nombre, c.Apellidos, d.cantidad, p.precio)t group by IDFactura , fecha, Nombre, Apellidos', {
+                                        raw: true
+        });
+        return res[0]
     }
 
     async findById(id) {

@@ -1,8 +1,8 @@
 var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
-var productService = require('../services/productService');
-var billDetailService = require('../services/BillDetailService')
-var clientService = require('../services/ClientService');
+var productService = require('./productService');
+var billDetailService = require('./BillDetailService')
+var clientService = require('./ClientService');
 
 
 const billService = sequelize.define('Factura', {

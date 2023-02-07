@@ -1,7 +1,5 @@
 var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
-var billService = require('../services/BillService');
-var billDetailService = require('../services/BillDetailService')
 
 const productService = sequelize.define('Producto', {
   // Model attributes are defined here
