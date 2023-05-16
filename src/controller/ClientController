@@ -33,7 +33,7 @@ Router.put('', async function (req, res) {
 });
 
 Router.delete('', async function (req, res) {   
-    res.send(await ClientApp.delete(req.body.IDCliente));
+    res.send(await ClientApp.delete(req.body.id));
 });
 
 module.exports = Router
