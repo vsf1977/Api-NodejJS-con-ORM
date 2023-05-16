@@ -15,7 +15,14 @@ const sequelize = new Sequelize('Facturacion', 'Usuario', '987654321', {
     port:49789,
     define: {
         freezeTableName: true
-    }
+    },
+    dialectOptions: {
+        encrypt: false ,
+        options: {
+          useUTC: false, // for reading from database
+          requestTimeout: 90000
+        },
+    },
 });
 
 module.exports = sequelize;

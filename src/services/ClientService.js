@@ -16,7 +16,7 @@ const clientService = sequelize.define('Cliente', {
     type: DataTypes.STRING,
   },
   FechaNacimiento: {
-    type: DataTypes.DATEONLY,
+    type: DataTypes.DATE,
   }
 },
   {

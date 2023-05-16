@@ -21,7 +21,7 @@ const billService = sequelize.define('Factura', {
     }
   },
   Fecha: {
-    type: DataTypes.DATEONLY,
+    type: DataTypes.DATE,
   }
 },
   {
