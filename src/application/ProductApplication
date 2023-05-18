@@ -1,0 +1,51 @@
+var productDomain = require('../domain/productDomain');
+
+var productDom = new productDomain()
+
+class ProductApplication {
+
+    constructor(){     
+    }
+
+    async findAll() {
+        try {
+            return await productDom.findAll()
+        } catch (error) {
+            return error
+        }
+    }
+
+    async findById(id) {
+        try {
+            return await productDom.findById(id)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async insert(data) {
+        try {
+            return await productDom.insert(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async update(data) {
+        try {
+            return await productDom.update(data)
+        } catch (error) {
+            return error
+        }
+    }
+
+    async delete(id) {
+        try {
+            return await productDom.delete(id)
+        } catch (error) {
+            return error
+        }
+    }
+}
+
+module.exports = ProductApplication

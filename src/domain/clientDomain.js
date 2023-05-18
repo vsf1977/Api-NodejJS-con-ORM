@@ -19,9 +19,9 @@ class ClientDomain {
     }
 
     async findById(id) {
-        return clientService.findByPk(id).then(function(cli) {
-            if (cli != null)
-                return cli
+        return clientService.findByPk(id).then(function(client) {
+            if (client != null)
+                return client
             else
                 return []
             }).catch( error => {
@@ -30,9 +30,9 @@ class ClientDomain {
     }
 
     async findByIdWithInfo(id) {
-        return clientService.findByPk(id,{ include: ["Factura"] }).then(function(cli) {
-            if (cli != null)
-                return cli
+        return clientService.findByPk(id,{ include: ["Factura"] }).then(function(client) {
+            if (client != null)
+                return client
             else
                 return []
             }).catch( error => {
@@ -41,9 +41,9 @@ class ClientDomain {
     }
     
     async findByName(name) {
-        return clientService.findAll({ where: { Nombre: {[Op.like]: '%' + name + '%' } } }).then(function(cli) {
-            if (cli != null)
-                return cli
+        return clientService.findAll({ where: { Nombre: {[Op.like]: '%' + name + '%' } } }).then(function(client) {
+            if (client != null)
+                return client
             else
                 return []
             }).catch( error => {

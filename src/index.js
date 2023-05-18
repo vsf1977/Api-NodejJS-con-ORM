@@ -25,3 +25,4 @@ app.listen(app.get('port'),()=>{
 //Routes
 app.use('/client',require('./controller/ClientController'));
 app.use('/bill',require('./controller/BillController'));
+app.use('/product',require('./controller/ProductController'));

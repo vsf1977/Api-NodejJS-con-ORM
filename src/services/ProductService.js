@@ -1,5 +1,6 @@
 var sequelize = require('../server/ConnectionString');
 const { DataTypes } = require('sequelize');
+var billDetailService = require('./BillDetailService')
 
 const productService = sequelize.define('Producto', {
   // Model attributes are defined here
@@ -19,5 +20,6 @@ const productService = sequelize.define('Producto', {
   timestamps: false
 });
 
+productService.hasMany(billDetailService, { as: "Factura" , foreignKey: "IDProducto"});
 
 module.exports = productService;  

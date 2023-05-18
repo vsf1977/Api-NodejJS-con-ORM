@@ -1,0 +1,39 @@
+var express = require('express');
+var Router = express.Router();
+var ProductApplication = require('../application/ProductApplication');
+
+var ProductApp = new ProductApplication()
+
+Router.get('/getAll', async function (req, res) {   
+    res.send(await ProductApp.findAll());
+});
+
+Router.get('/getAllWithInfo', async function (req, res) {   
+    res.send(await ProductApp.findAllWithInfo());
+});
+
+Router.get('/getById/:id', async function (req, res) {   
+    res.send(await ProductApp.findById(req.params.id));
+});
+
+Router.get('/getByIdWithInfo/:id', async function (req, res) {   
+    res.send(await ProductApp.findByIdWithInfo(req.params.id));
+});
+
+Router.get('/getByName/:name', async function (req, res) {   
+    res.send(await ProductApp.findByName(req.params.name));
+});
+
+Router.post('', async function (req, res) {   
+    res.send(await ProductApp.insert(req));
+});
+
+Router.put('', async function (req, res) {   
+    res.send(await ProductApp.update(req));
+});
+
+Router.delete('', async function (req, res) {   
+    res.send(await ProductApp.delete(req.body.id));
+});
+
+module.exports = Router
