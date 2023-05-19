@@ -47,9 +47,11 @@ class BillDomain {
     }
 
     async update(req) {
-        return billService.update({Fecha: req.body.Fecha}, 
-            { where: { IDFactura: req.body.IDFactura }
-            }).then(function(res) {       
+        return billService.update({Fecha: req.body.Fecha,
+                                   IDCliente: req.body.IDCliente}, 
+                                  { where: { IDFactura: req.body.IDFactura }
+                }).then(function(res) { 
+                    console.log(req.body.IDCliente, req.body.Fecha)      
                 return res
         }).catch( error => {
             return error
